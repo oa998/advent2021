@@ -3,7 +3,7 @@ import { getInputByDay } from './util.js';
 
 // part 1
 async function part1() {
-  let input = await (await getInputByDay(1)).split('\n').map(Number);
+  let input = (await getInputByDay(1)).split('\n').map(Number);
   let count = 0;
   for (const i in input.slice(1)) {
     if(input[i] > input[i-1]) count++;
@@ -12,7 +12,7 @@ async function part1() {
 }
 
 async function part2() {
-  let input = await (await getInputByDay(1)).split('\n').map(Number);
+  let input = (await getInputByDay(1)).split('\n').map(Number);
   let count = 0;
   let lastSum = input.slice(0,3).reduce((s,i) => s+i, 0);
   for (let i = 1; i < input.length-2; i++) {
