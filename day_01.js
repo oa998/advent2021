@@ -6,7 +6,7 @@ async function part1(input) {
   for (const i in input.slice(1)) {
     if(input[i] > input[i-1]) count++;
   }
-  console.log('part 1:', count); // 1482
+  console.log('part 1:', count); // 1482 
 }
 
 async function part2(input) {
