@@ -1,7 +1,6 @@
 import { getInputByDay } from './util.js';
 
 
-// part 1
 async function part1(input) {
   let count = 0;
   for (const i in input.slice(1)) {

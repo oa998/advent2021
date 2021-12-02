@@ -1,7 +1,6 @@
 import { getInputByDay } from './util.js';
 
 
-// part 1
 async function part1(input) {
   let depth = 0, horiz = 0;
   input.split('\n').filter(x=>x).forEach(i => {

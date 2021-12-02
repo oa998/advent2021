@@ -3,13 +3,11 @@ cat <<EOT >> "day_$n".js
 import { getInputByDay } from './util.js';
 
 
-// part 1
 async function part1(input) {
 
   console.log('part 1:');
 }
 
-// part 2
 async function part2(input) {
   
   console.log('part 2:');
