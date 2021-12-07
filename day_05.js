@@ -1,8 +1,7 @@
 import { getInputByDay } from "./util.js";
 import fs from "fs";
 
-async function part1(input) {
-  const lines = input.split("\n").filter((x) => x);
+async function part1(lines) {
   const matrix = Array(1000)
     .fill()
     .map(() => Array(1000).fill(0));
@@ -14,7 +13,6 @@ async function part1(input) {
         .map(Number);
       return { x1, y1, x2, y2 };
     })
-    .filter(({ x1, y1, x2, y2 }) => x1 === x2 || y1 === y2)
     .forEach(({ x1, y1, x2, y2 }) => {
       if (x1 === x2) {
         const start = Math.min(y1, y2);
@@ -47,8 +45,7 @@ async function part1(input) {
   console.log("part 1:", c);
 }
 
-async function part2(input) {
-  const lines = input.split("\n").filter((x) => x);
+async function part2(lines) {
   const matrix = Array(1000)
     .fill()
     .map(() => Array(1000).fill(0));
@@ -102,7 +99,7 @@ async function part2(input) {
 }
 
 (async () => {
-  const input = await getInputByDay(5);
+  const input = (await getInputByDay(5)).split("\n").filter((x) => x);
   // const input = `0,9 -> 5,9
   // 8,0 -> 0,8
   // 9,4 -> 3,4
@@ -112,7 +109,7 @@ async function part2(input) {
   // 0,9 -> 2,9
   // 3,4 -> 1,4
   // 0,0 -> 8,8
-  // 5,5 -> 8,2`;
+  // 5,5 -> 8,2`.split("\n").filter((x) => x);
   await part1(input);
   await part2(input);
 })();
