@@ -1,5 +1,6 @@
-import { getInputByDay } from "./util.js";
+import { getInputByDay } from "../util.js";
 import fs from "fs";
+import path from "path";
 
 async function part1(lines) {
   const matrix = Array(1000)
@@ -40,7 +41,10 @@ async function part1(lines) {
   const m = matrix
     .map((row) => row.map((r) => (r === 0 ? "." : Math.min(r, 9))).join(""))
     .join("\n");
-  fs.writeFileSync("day5output/mat1.txt", m);
+  fs.writeFileSync(
+    path.join(path.resolve(), "05", "output", "mat1.md"),
+    "```\n" + m + "\n```"
+  );
 
   console.log("part 1:", c);
 }
@@ -93,23 +97,16 @@ async function part2(lines) {
   const m = matrix
     .map((row) => row.map((r) => (r === 0 ? "." : Math.min(r, 9))).join(""))
     .join("\n");
-  fs.writeFileSync("day5output/mat2.txt", m);
+  fs.writeFileSync(
+    path.join(path.resolve(), "05", "output", "mat2.md"),
+    "```\n" + m + "\n```"
+  );
 
   console.log("part 1:", c);
 }
 
 (async () => {
   const input = (await getInputByDay(5)).split("\n").filter((x) => x);
-  // const input = `0,9 -> 5,9
-  // 8,0 -> 0,8
-  // 9,4 -> 3,4
-  // 2,2 -> 2,1
-  // 7,0 -> 7,4
-  // 6,4 -> 2,0
-  // 0,9 -> 2,9
-  // 3,4 -> 1,4
-  // 0,0 -> 8,8
-  // 5,5 -> 8,2`.split("\n").filter((x) => x);
   await part1(input);
   await part2(input);
 })();

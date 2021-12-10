@@ -1,4 +1,4 @@
-import { getInputByDay } from "./util.js";
+import { getInputByDay } from "../util.js";
 
 async function part1(input, maxDays = 80) {
   let fishCount = input.reduce((a, f) => {

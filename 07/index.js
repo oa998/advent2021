@@ -1,4 +1,4 @@
-import { getInputByDay } from "./util.js";
+import { getInputByDay } from "../util.js";
 
 async function part1(input) {
   const max = Math.max(...input);

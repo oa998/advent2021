@@ -1,6 +1,10 @@
 n=$(printf %02d $1)
-cat <<EOT >> "day_$n".js
-import { getInputByDay } from './util.js';
+mkdir "$n"
+cd "$n"
+mkdir output
+mkdir util
+cat <<EOT >> index.js
+import { getInputByDay } from "../util.js";
 
 
 async function part1(input) {

@@ -1,5 +1,5 @@
-import { getInputByDay } from "./util.js";
-import Solver from "./08_digitalNumberSolver.js";
+import { getInputByDay } from "../util.js";
+import Solver from "./util/index.js";
 
 // 1, 3, 4, 7
 async function part1(input) {
