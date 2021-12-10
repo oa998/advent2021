@@ -41,10 +41,7 @@ async function part1(lines) {
   const m = matrix
     .map((row) => row.map((r) => (r === 0 ? "." : Math.min(r, 9))).join(""))
     .join("\n");
-  fs.writeFileSync(
-    path.join(path.resolve(), "05", "output", "mat1.md"),
-    "```\n" + m + "\n```"
-  );
+  fs.writeFileSync(path.join(path.resolve(), "05", "output", "mat1.md"), m);
 
   console.log("part 1:", c);
 }
@@ -97,10 +94,7 @@ async function part2(lines) {
   const m = matrix
     .map((row) => row.map((r) => (r === 0 ? "." : Math.min(r, 9))).join(""))
     .join("\n");
-  fs.writeFileSync(
-    path.join(path.resolve(), "05", "output", "mat2.md"),
-    "```\n" + m + "\n```"
-  );
+  fs.writeFileSync(path.join(path.resolve(), "05", "output", "mat2.md"), m);
 
   console.log("part 1:", c);
 }

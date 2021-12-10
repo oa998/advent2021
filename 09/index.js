@@ -77,7 +77,7 @@ async function part2(input) {
 
   fs.writeFileSync(
     path.join(path.resolve(), "09", "output", "basins.md"),
-    "```\n" + grid.map((row) => row.join("")).join("\n") + "\n```"
+    grid.map((row) => row.join("")).join("\n")
   );
 
   console.log(
