@@ -151,11 +151,4 @@ class Solver {
   };
 }
 
-// const withNine =
-//   "fdeba beagfd gbafe dagb dbf ecfad bd dgcaefb fbecgd abfecg | dgba dfb ecadf bdf";
-// const noNine =
-//   "fagbdc fagdeb cebgf cbd ecagdb cade dagcebf dc becdg geabd | gfbadec cdae dbc bcefg";
-// const solver = new Solver(noNine);
-// solver.solve();
-
 export default Solver;
