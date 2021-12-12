@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        border: solid lightgray 1px;
+      }
+      div {
+        width: max-content;
+      }
+    </style>
+  </head>
+  <body>
+    <input
+      type="color"
+      id="color-picker"
+      onchange="(() => setColorFromHex(this.value))()"
+    />
+    <div>
+      <canvas id="can" width="1585" height="1585"></canvas>
+    </div>
+    <script src="./basins.js"></script>
+    <script>
+      const MAX_ROWS = 1585;
+      // grid imported from basins.js
+      if (grid.length !== MAX_ROWS) alert("width is not " + MAX_ROWS);
+
+      const can = document.getElementById("can");
+      const ctx = can.getContext("2d", { alpha: false });
+
+      function scale(number, inMin, inMax, outMin, outMax) {
+        return (
+          ((number - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+        );
+      }
+      // rand color
+      let color = Math.round(scale(Math.random(), 0, 1, 0, 255));
+      let raf;
+
+      const colorRows = (start) => {
+        // draw 5 rows at a time
+        let y = start;
+        for (; y < MAX_ROWS && y < start + 6; y++) {
+          for (let x = 0; x < MAX_ROWS; x++) {
+            const cell = grid[y][x];
+            const a = scale(cell, 0, 255, 100, 10);
+            ctx.fillStyle = `hsl(${color}, 100%, ${a}%)`;
+            ctx.fillRect(x, y, 1, 1);
+          }
+        }
+
+        if (y < MAX_ROWS) {
+          raf = requestAnimationFrame(() => colorRows(y));
+        }
+      };
+
+      colorRows(0);
+
+      function setColorFromHex(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
+        let r = parseInt(result[1], 16);
+        let g = parseInt(result[2], 16);
+        let b = parseInt(result[3], 16);
+
+        (r /= 255), (g /= 255), (b /= 255);
+        const max = Math.max(r, g, b),
+          min = Math.min(r, g, b);
+        let h,
+          s,
+          l = (max + min) / 2;
+
+        if (max == min) {
+          h = s = 0; // achromatic
+        } else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch (max) {
+            case r:
+              h = (g - b) / d + (g < b ? 6 : 0);
+              break;
+            case g:
+              h = (b - r) / d + 2;
+              break;
+            case b:
+              h = (r - g) / d + 4;
+              break;
+          }
+
+          h /= 6;
+        }
+
+        s = s * 100;
+        s = Math.round(s);
+        l = l * 100;
+        l = Math.round(l);
+        color = Math.round(360 * h);
+        cancelAnimationFrame(raf);
+        colorRows(0);
+      }
+    </script>
+  </body>
+</html>

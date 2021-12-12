@@ -118,7 +118,7 @@ async function part2(input) {
 
     // End when all 0's
     if (gridFlat.filter(({ n }) => n === 0).length === gridFlat.length) {
-      console.log("part 2:", { step });
+      console.log("part 2: all flashed at:", { step });
       return; // quit
     }
   }
