@@ -39,18 +39,20 @@ async function part1(input) {
 
 async function part2(input) {
   let part2Count = 0;
-  const START = "Start"; // not all lowercase to match changes made to input
+  const START = "start"; // not all lowercase to match changes made to input
 
   function getAdj(input) {
-    return input
-      .replace(/start/g, "Start") // make "start" not all lowercase to prevent backtracking to start
-      .split("\n")
-      .map((row) => row.split("-"))
-      .reduce((acc, [left, right]) => {
-        acc[left] = (acc[left] || []).concat(right);
-        acc[right] = (acc[right] || []).concat(left);
-        return acc;
-      }, {});
+    return (
+      input
+        // .replace(/start/g, "Start") // make "start" not all lowercase to prevent backtracking to start
+        .split("\n")
+        .map((row) => row.split("-"))
+        .reduce((acc, [left, right]) => {
+          acc[left] = (acc[left] || []).concat(right);
+          acc[right] = (acc[right] || []).concat(left);
+          return acc;
+        }, {})
+    );
   }
 
   function dfs(adj) {
