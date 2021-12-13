@@ -54,11 +54,11 @@ async function part2(input) {
     const lcVisitedTwice = Object.values(countedVisits).some((c) => c > 1);
 
     if (
-      lcVisitedTwice &&
-      next.toLowerCase() === next &&
-      currPath.includes(next)
+      lcVisitedTwice && // if any lower-case has been seen twice
+      next.toLowerCase() === next && // and this is a lowercase
+      currPath.includes(next) // and we've been here already
     ) {
-      return;
+      return; // then quit
     }
 
     if (next === "end") {
